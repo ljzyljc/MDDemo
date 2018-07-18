@@ -21,6 +21,7 @@ public class QuickSortPlus {
     }
     public static void sort(int[] arr,int low,int high){
         if (low < high) {
+            swap(arr, (int) (low +Math.random() * (high - low + 1)),high);
             int[] p = partition(arr, low, high);
             sort(arr, low, p[0] - 1);
             sort(arr, p[1] + 1, high);
