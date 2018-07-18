@@ -8,7 +8,7 @@ public class NetherlandsFlag {
 
     public static void main(String[] args){
 
-        int [] aa = partition(a,0,a.length-1,8);
+        int[] aa = partition(a,0,a.length-1,2);
         System.out.print(Arrays.toString(a));
         System.out.print(Arrays.toString(aa));
 
@@ -26,6 +26,7 @@ public class NetherlandsFlag {
                 L++;
             }
         }
+        System.out.println(Arrays.toString(arr));
         return new int[]{less + 1,more -1};  //返回的是等于区域是从哪到哪的,以后有用
 
     }

@@ -1,32 +1,34 @@
 package com.finance.jackie.mddemo;
 
+import java.util.Arrays;
+
 public class MergeSort {
 
     static int[] a = new int[]{3,1,8,5,2,66};
     public static void main(String[] args){
         mergeSort(a);
-
+        System.out.print(Arrays.toString(a));
     }
 
 
-    public static void mergeSort(int[] arr){
-        if (arr == null || arr.length < 2){
-            return;
-        }
-        sortProcess(arr,0,arr.length - 1);
-    }
-
-    public static void sortProcess(int[] arr,int L,int R){
-        if (L == R){
-            return;
-        }
-        int mid = L + ((R - L) >> 1);
-        sortProcess(arr, L, mid);
-        sortProcess(arr,mid + 1,R);
-
-
-    }
-
+//    public static void mergeSort(int[] arr){
+//        if (arr == null || arr.length < 2){
+//            return;
+//        }
+//        sortProcess(arr,0,arr.length - 1);
+//    }
+//
+//    public static void sortProcess(int[] arr,int L,int R){
+//        if (L == R){
+//            return;
+//        }
+//        int mid = L + ((R - L) >> 1);
+//        sortProcess(arr, L, mid);
+//        sortProcess(arr,mid + 1,R);
+//        merge(arr,0,mid,R);
+//
+//    }
+//
     public static void merge(int[] arr,int L,int mid,int R){
         int[] help = new int[R - L + 1];
         int i = 0;
@@ -50,4 +52,79 @@ public class MergeSort {
 
     }
 
+    public static void mergeSort(int[] arr){
+        if (arr == null || arr.length < 2){
+            return;
+        }
+        sortProcress(arr,0,arr.length -1);
+    }
+
+    public static void sortProcress(int[] arr,int L,int R){
+
+        if (L == R){
+            return;
+        }
+        int mid = L + ((R - L)>> 1);
+        sortProcress(arr,L,mid);
+        sortProcress(arr,mid + 1,R);
+        merge(arr,L,mid,R);
+
+    }
+//    public static void merge(int[] arr,int L,int mid,int R){
+//        int [] help = new int[R - L + 1];
+//        int i = 0;
+//        int p1 = L;
+//        int p2 = mid + 1;
+//        while (p1 <= mid && p2 <= R){
+//            help[i++] = arr[p1] > arr[p2] ? arr[p2++] : arr[p1++];
+//        }
+//
+//        while (p1 <= mid){
+//            help[i++] = arr[p1++];
+//        }
+//        while (p2 <= R){
+//            help[i++] = arr[p2++];
+//        }
+//        for (int m = 0;m < help.length;m++){
+//            arr[L + m] = help[m];
+//        }
+//
+//
+//    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
