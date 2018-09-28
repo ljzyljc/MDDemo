@@ -1,9 +1,11 @@
 package com.finance.jackie.mddemo.tree;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
  * Created by Jackie on 2018/8/13.
+ * BinaryTree 获取高度，获取总个数，递归和非递归方式实现
  */
 public class TreeNodeTest {
 
@@ -15,9 +17,9 @@ public class TreeNodeTest {
 
     public static void main(String[] args){
         TreeNodeTest treeNodeTest = new TreeNodeTest();
-        treeNodeTest.createTreeNode();
-        System.out.println(treeNodeTest.getHeight());
-        System.out.println(treeNodeTest.getSize(rootTreeNode));
+//        treeNodeTest.createTreeNode();
+//        System.out.println(treeNodeTest.getHeight());
+//        System.out.println(treeNodeTest.getSize(rootTreeNode));
 
 //        treeNodeTest.preOrder(rootTreeNode);
 //        treeNodeTest.midOrder(rootTreeNode);
@@ -25,9 +27,17 @@ public class TreeNodeTest {
 
 //        treeNodeTest.nonPreOrder(rootTreeNode);
 //        treeNodeTest.nonMidOrder(rootTreeNode);
-        treeNodeTest.nonPostOrder(rootTreeNode);
+//        treeNodeTest.nonPostOrder(rootTreeNode);
+        ArrayList<String> arrayList = new ArrayList<>();
+        for(String str: arr){
+            arrayList.add(str);
+        }
+        TreeNode treeNode = treeNodeTest.createTreeByPreOrder(arrayList.size(),arrayList);
+        treeNodeTest.preOrder(treeNode);
+
     }
 
+    // just low
     public void createTreeNode(){
         TreeNode treeNodeB = new TreeNode(2,"B");
         TreeNode treeNodeC = new TreeNode(3,"C");
@@ -40,9 +50,41 @@ public class TreeNodeTest {
         treeNodeB.rightChild = treeNodeE;
         treeNodeC.rightChild = treeNodeF;
     }
+    private static String[] arr = new String[]{"A","B","D","#","#","E","#","#","C","#","F","#","#"};
+    int index = 0;
+    //create a tree by pre order
+    public TreeNode createTreeByPreOrder(int size,ArrayList<String> list){
+        if (list == null || size == 0){
+            return null;
+        }
+        TreeNode treeNode ;
+        String d = list.get(0);
+        index = size - list.size();
+
+        if ("#".equals(d)){  //碰到#就返回把
+            treeNode = null;
+            list.remove(0);
+            return treeNode;
+        }
+        treeNode = new TreeNode(index,d);
+        if (index == 0){
+            rootTreeNode = treeNode;
+        }
+        list.remove(0);
+        treeNode.leftChild = createTreeByPreOrder(size,list);
+        treeNode.rightChild = createTreeByPreOrder(size,list);
+
+        return treeNode;
+
+    }
+
+
+
+
+
 
     /**
-     * 非迭代方式--前序遍历
+     * 非迭代方式--preOrder
      * @param treeNode
      */
     public void nonPreOrder(TreeNode treeNode){
@@ -66,7 +108,7 @@ public class TreeNodeTest {
     }
 
     /**
-     * 非迭代--中序遍历
+     * 非迭代--midOrder
      * @param treeNode
      */
 //        static class Pair{
