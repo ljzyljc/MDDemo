@@ -25,8 +25,8 @@ public class DoubleNode {
         two.nextNode = three;
         three.preNode = two;
         three.nextNode = head;
-//        DoubleNode current = reverse(head);
-        DoubleNode current = reverse2(head);
+        DoubleNode current = reverse(head);
+//        DoubleNode current = reverse2(head);
         int i = 0;
         while (current != null){
             if (current.data == 1){
