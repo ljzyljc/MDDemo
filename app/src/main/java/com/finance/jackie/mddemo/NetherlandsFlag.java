@@ -5,13 +5,17 @@ import java.util.Arrays;
 public class NetherlandsFlag {
 
     static int[] a = new int[]{3,1,8,5,0,2,33,2,4,3,2};
-    static int[] bb = new int[]{10, -2, 5, 8, -4, 2, -3, 7, 12, -88, -23, 35};
+    static int[] bb = new int[]{2,2,10,5,2,2, -2, 5, 8, -4, 2, -3, 7, 12, -88, -23, 35};
     public static void main(String[] args){
 
 //        int[] aa = partition(a,0,a.length-1,2);
-        int[] aa = partition(bb,2);
-        System.out.print(Arrays.toString(bb));
-        System.out.print(Arrays.toString(aa));
+//        int[] aa = partition(bb,2);
+//        System.out.print(Arrays.toString(bb));
+//        System.out.print(Arrays.toString(aa));
+
+        int[] aa = partitionA(a,88);
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(aa));
 
     }
 
@@ -60,6 +64,28 @@ public class NetherlandsFlag {
     }
 
 
+
+    public static int[] partitionA(int[] arr,int num){
+        int top = 0;
+        int end = arr.length - 1;
+        int current = 0;
+        while (current <= end){     //num  = 2;
+            int now = arr[current];
+            if (now < num){
+                swap(arr,current,top);
+                top++;
+                current++;
+
+            }else if (now > num){
+                swap(arr,current,end);
+                end--;
+            }else{
+                current++;
+            }
+        }
+        return new int[]{top,current - 1};
+
+    }
 
 
 
